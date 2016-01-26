@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
+	<head>
+		<meta charset="iso-8859-1">
+		<title>Canvas Donut Chart 0.1</title>
+		<script src="canvasDonutChart.js"></script>
+		<script>
+		var canvasTest = new CanvasDonutChart();
+		function test(){
+			var idChart = document.getElementById('idChart').value;
+			var radius = document.getElementById('radius').value;
+			var lineWidth = document.getElementById('lineWidth').value;
+			var percent = document.getElementById('percent').value;
+			var textValue = document.getElementById('textValue').value;
+			var textValueSize = document.getElementById('textValueSize').value;
+			var desc = document.getElementById('desc').value;
+			var descTextSize = document.getElementById('descTextSize').value;
+			var width = document.getElementById('width').value;
+			var height = document.getElementById('height').value;
+			var color = document.getElementById('color').value;
+			var colorBackground = document.getElementById('colorBackground').value;
+
+			var arcFontSize = document.getElementById('arcFontSize').value;
+			var arcFontName = document.getElementById('arcFontName').value;
+			var arcStartAngle = document.getElementById('arcStartAngle').value;
+			var arcDiameter = document.getElementById('arcDiameter').value;
+			var arcText = document.getElementById('arcText').value;
+
+			canvasTest.single({ id:idChart, radius:radius, lineWidth:lineWidth, percent:percent, textValue:textValue, textValueSize:textValueSize, desc: desc, descSize:descTextSize, width:width, height:height, color:color, colorBackground:colorBackground, arcText:arcText, arcFontSize:arcFontSize, arcFontName:arcFontName, arcStartAngle:arcStartAngle, arcDiameter:arcDiameter});
+			console.log("CanvasDonutChart.simple({ id:"+idChart+", radius:"+radius+", lineWidth:"+lineWidth+", percent:"+percent+", textValue:"+textValue+", textValueSize:"+textValueSize+", desc:"+ desc+", descSize:"+descTextSize+", width:"+width+", height:"+height+",color:"+color+", colorBackground:"+colorBackground+"});");
+			//CanvasDonutChart.double({id:'chartPMG',radius:30,lineWidth:10, percent1:75,percent2:85,width:120,height:120});
+		};
+		</script>
+		<link rel="stylesheet" type="text/css" href="canvasDonutChart.css">
+
+		<style>
+			span.NatiSpan { position: relative; margin-top:5px; font-weight:500; text-align:center; display:block; }
+			div.boxCanvas {width:800px; height:500px; display: table;}
+			div.boxCanvas #content {width:500px; height:760px; border: 1px solid #999; padding:5px; border-radius:5px; float: left;}
+			div.boxCanvas #content + #content {width:200px; margin-left:520px; float:none}
+    </style>
+
+	</head>
+<body>
+
+	<div class="boxCanvas">
+		<div id="content">
+			<div id="chartPMG">	</div>
+
+		</div>
+		<div id="content">
+			<div class="menu">
+				<label>ID</label><br/>
+				<input type="text" id="idChart" style="width:100px;" value="chartPMG">
+			</div>
+			<div class="menu">
+				<label>Radius</label><br/>
+				<input type="text" id="radius" style="width:100px;" value="">
+			</div>
+			<div class="menu">
+				<label>Line Width</label><br/>
+				<input type="text" id="lineWidth" style="width:100px;" value="13">
+			</div>
+			<div class="menu">
+				<label>Percent</label><br/>
+				<input type="text" id="percent" style="width:100px;" value="73">
+			</div>
+			<div class="menu">
+				<label>Text Value</label><br/>
+				<input type="text" id="textValue" style="width:100px;" value="7.3">
+			</div>
+			<div class="menu">
+				<label>Text Value size</label><br/>
+				<input type="text" id="textValueSize" style="width:100px;" value="1.2">
+			</div>
+			<div class="menu">
+				<label>Desc</label><br/>
+				<input type="text" id="desc" style="width:100px;" value="PMG">
+			</div>
+			<div class="menu">
+				<label>Desc size</label><br/>
+				<input type="text" id="descTextSize" style="width:100px;" value="1.2">
+			</div>
+			<div class="menu">
+				<label>Height</label><br/>
+				<input type="text" id="height" style="width:100px;" value="120">
+			</div>
+			<div class="menu">
+				<label>Width</label><br/>
+				<input type="text" id="width" style="width:100px;" value="120">
+			</div>
+			<div class="menu">
+				<label>Color</label><br/>
+				<select id="color">
+					<option value="#4675A6">Azul</option>
+					<option value="#10cfbd">Verde 1</option>
+					<option value="#a9ed84">Verde 2</option>
+					<option value="#f6f06b">Amarelo</option>
+					<option value="#FFAA31">Laranja</option>
+					<option value="#CD5555">Vermelho</option>
+				</select>
+			</div>
+			<div class="menu">
+				<label>Color Background</label><br/>
+				<select id="colorBackground">
+					<option value="#aac2db">Azul</option>
+					<option value="#cff5f1">Verde 1</option>
+					<option value="#ecf7e7">Verde 2</option>
+					<option value="#FFFFE0">Amarelo</option>
+					<option value="#F5DEB3">Laranja</option>
+					<option value="#FFC1C1">Vermelho</option>
+					<option value="#F8F8FF">GhostWhite</option>
+					<option value="#D3D3D3">LightGray</option>
+				</select>
+			</div>
+			<div class="menu">
+				<label>Arc Text</label><br/>
+				<input type="text" id="arcText" style="width:100px;" >
+			</div>
+			<div class="menu">
+				<label>Arc Diameter</label><br/>
+				<input type="text" id="arcDiameter" style="width:100px;" value="60">
+			</div>
+			<div class="menu">
+				<label>Arc Font Size(pt)</label><br/>
+				<input type="text" id="arcFontSize" style="width:100px;" value="10">
+			</div>
+			<div class="menu">
+				<label>Arc Font Name</label><br/>
+				<input type="text" id="arcFontName" style="width:100px;" value="Verdana">
+			</div>
+			<div class="menu">
+				<label>Arc Start Angle</label><br/>
+				<input type="text" id="arcStartAngle" style="width:100px;" value="0">
+			</div>
+			<button onclick="test();">Aplicar</button>
+		</div>
+	</div>
+
+</body>
+
+
+</html>

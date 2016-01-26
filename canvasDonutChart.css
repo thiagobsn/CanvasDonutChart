@@ -1,0 +1,4 @@
+div.CanvasDonutContent {text-align:center; position:relative;}
+div.CanvasDonutChart {text-align:center; color: #555;}
+div.CanvasDonutChart span {z-Index:2;font-weight:600; color: #555;}
+.CanvasDonutChart canvas {position: absolute;top: 0;left: 0;}
