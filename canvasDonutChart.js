@@ -14,8 +14,8 @@ var CanvasDonutChart =  function() {
 
   var _canvas;
 
-  _single = function(options){
-    console.log("# Single Canvas Donut Chart");
+  var _single = function(options){
+    //console.log("# Single Canvas Donut Chart");
     var content = _getContent(options);
     if(content){
       _canvas = _createCanvas(options);
@@ -68,7 +68,6 @@ var CanvasDonutChart =  function() {
         }
         _drawCircularText(context,centerX,centerY,options.arcText, arcDiameter ,arcStartAngle, arcAlign, false, true, arcFontName, arcFontSize, 0);
       }
-      console.log(_canvas.height);
       contentCanvas.appendChild(_canvas);
       content.appendChild(contentCanvas);
       if(descCanvas){
@@ -78,7 +77,7 @@ var CanvasDonutChart =  function() {
 
   };
 
-  _getContent = function(options){
+  var _getContent = function(options){
     if(options.id){
       var content = document.getElementById(options.id);
       if(content){
@@ -99,7 +98,7 @@ var CanvasDonutChart =  function() {
     }
   };
 
-  _createContentCanvasDiv = function(options){
+  var _createContentCanvasDiv = function(options){
     var content = document.createElement("div");
     content.setAttribute("class", "CanvasDonutChart");
     if(options.width && options.height){
@@ -113,7 +112,7 @@ var CanvasDonutChart =  function() {
     return content;
   };
 
-  _createDesc = function(options){
+  var _createDesc = function(options){
     if(!options.arcText){
       var descHeight = DESC_HEIGHT_DEFAULT;
       var descSize = "1.2em";
@@ -133,7 +132,7 @@ var CanvasDonutChart =  function() {
     }
   };
 
-  _getLineWidth = function(options){
+  var _getLineWidth = function(options){
     var lineWidth;
     if(options.lineWidth){
       lineWidth = parseInt(options.lineWidth);
@@ -143,7 +142,7 @@ var CanvasDonutChart =  function() {
     return lineWidth;
   };
 
-  _createCanvas = function(options){
+  var _createCanvas = function(options){
     var canvas = document.createElement("canvas");
     if(options.width && options.height){
       if(options.arcText){
@@ -156,7 +155,7 @@ var CanvasDonutChart =  function() {
     return canvas;
   };
 
-  _getRadius = function(options){
+  var _getRadius = function(options){
     if(options.radius){
       return options.radius;
     }else{
@@ -164,25 +163,26 @@ var CanvasDonutChart =  function() {
     }
   };
 
-  _getPercent = function(options){
+  var _getPercent = function(options){
     var fixPercent = (Math.PI/2);
     var percent;
     if(options.percent){
-      percent = ((Math.PI * options.percent)/50) - fixPercent;
+      percent = (((Math.PI * options.percent)/50) - fixPercent) - 0.00001;
     }else{
-      percent = (1.5*Math.PI) - fixPercent;
+      percent = (1.5*Math.PI);
     }
+    console.log(percent);
     return percent;
   };
 
-  _getStart = function(){
-    return 1.5*Math.PI + 0.000001;
+  var _getStart = function(){
+    return (1.5*Math.PI);
   };
 
-  _setTextCenterCanvas = function(options,contentCanvas){
+  var _setTextCenterCanvas = function(options,contentCanvas){
     var contentText = document.createElement("span");
     contentText.style.lineHeight = _canvas.height+'px';
-    if(options.textValue){
+    if(options.textValue || options.textValue >= 0){
       contentText.textContent = options.textValue;
       var textValueSize = "1.2em";
       if(options.textValueSize){
@@ -193,7 +193,7 @@ var CanvasDonutChart =  function() {
     contentCanvas.appendChild(contentText);
   };
 
-  _getColors = function(options){
+  var _getColors = function(options){
       var colors = {};
       if(options.color){
         colors.color = options.color;
@@ -208,7 +208,7 @@ var CanvasDonutChart =  function() {
       return colors;
   };
 
-  _drawDonutBackground = function(context,colors,centerX,centerY,lineWidth,radius){
+  var _drawDonutBackground = function(context,colors,centerX,centerY,lineWidth,radius){
     context.beginPath();
     context.strokeStyle = colors.background;
     context.lineWidth=lineWidth;
@@ -217,7 +217,7 @@ var CanvasDonutChart =  function() {
     context.stroke();
   };
 
-  _drawDonut = function(context,colors,centerX,centerY,lineWidth,radius,start,end){
+ var  _drawDonut = function(context,colors,centerX,centerY,lineWidth,radius,start,end){
     context.beginPath();
     context.strokeStyle = colors.color;
     context.lineWidth=lineWidth;
@@ -225,12 +225,12 @@ var CanvasDonutChart =  function() {
     context.stroke();
   };
 
-  _getCanvas = function(){
+  var _getCanvas = function(){
     return _canvas;
   };
 
   //http://blog.graphicsgen.com/2015/03/html5-canvas-rounded-text.html
-  _drawCircularText = function(context, centerX,centerY,text, diameter, startAngle, align, textInside, inwardFacing, fName, fSize, kerning) {
+  var _drawCircularText = function(context, centerX,centerY,text, diameter, startAngle, align, textInside, inwardFacing, fName, fSize, kerning) {
     var clockwise = align == "right" ? 1 : -1; // draw clockwise for aligned right. Else Anticlockwise
     startAngle = startAngle * (Math.PI / 180); // convert to radians
      // calculate height of the font. Many ways to do this - you can replace with your own!
